@@ -26,7 +26,7 @@ const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
 const OrderHistoryPage = lazy(() => import('@/pages/profile/OrderHistoryPage'));
 const AddressesPage = lazy(() => import('@/pages/profile/AddressesPage'));
 const SellerDashboardPage = lazy(() => import('@/pages/SellerDashboardPage'));
-const AdminDashboardPage = lazy(() => import('@/pages/AdminDashboardPage'));
+// const AdminDashboardPage = lazy(() => import('@/pages/AdminDashboardPage'));
 const BlogPage = lazy(() => import('@/pages/BlogPage'));
 const ArticlePage = lazy(() => import('@/pages/ArticlePage'));
 const LoginPage = lazy(() => import('@/pages/authentication/LoginPage'));
@@ -143,7 +143,7 @@ const AppContent = () => {
               </Route>
               
               <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
-                <Route path="/admin-dashboard" element={<AdminDashboardPage initialProducts={sampleProducts} initialUsers={[]} />} />
+                {/* <Route path="/admin-dashboard" element={<AdminDashboardPage initialProducts={sampleProducts} initialUsers={[]} />} /> */}
               </Route>
               
               <Route path="*" element={<NotFoundPage />} />
