@@ -104,7 +104,7 @@ const AppContent = () => {
   const wishlistCount = wishlist.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-cream-50 to-white flex flex-col font-body">
+    <div className="min-h-screen bg-white flex flex-col font-body">
       <Navbar cartItemCount={cartItemCount} wishlistCount={wishlistCount} setIsCartOpen={setIsCartOpen} />
       
       <main className="flex-grow pt-20 md:pt-24">
