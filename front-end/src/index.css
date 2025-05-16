@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:wght@400;700&family=Nunito:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%; /* Lighter Cream */
+    --foreground: 25 25% 15%; /* Darker, softer black/brown */
+    --card: 0 0% 100%;
+    --card-foreground: 25 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 25% 15%;
+    --primary: 38 92% 50%; /* Gold - remains similar */
+    --primary-foreground: 25 25% 15%; /* Text on primary elements */
+    --secondary: 38 70% 85%; /* Softer Light Gold / Champagne */
+    --secondary-foreground: 25 25% 15%;
+    --muted: 40 20% 93%; /* Lighter muted for backgrounds */
+    --muted-foreground: 25 15% 45%;
+    --accent: 35 95% 55%; /* Slightly more vibrant Gold/Amber for accents */
+    --accent-foreground: 25 25% 15%;
+    --destructive: 0 70% 55%; /* Richer Red */
+    --destructive-foreground: 0 0% 98%;
+    --border: 38 40% 80%; /* Softer Gold/Beige Border */
+    --input: 38 40% 80%;
+    --ring: 38 92% 50%; /* Gold for focus rings */
+    --radius: 0.75rem; /* Slightly more rounded */
+  }
+
+  .dark {
+    --background: 25 25% 12%; /* Dark Charcoal */
+    --foreground: 40 33% 90%; /* Light Cream text */
+    --card: 25 25% 18%; /* Darker card */
+    --card-foreground: 40 33% 90%;
+    --popover: 25 25% 10%;
+    --popover-foreground: 40 33% 90%;
+    --primary: 38 92% 55%; /* Gold - slightly brighter for dark mode */
+    --primary-foreground: 25 25% 15%;
+    --secondary: 38 70% 30%; /* Darker Champagne */
+    --secondary-foreground: 40 33% 90%;
+    --muted: 25 20% 25%;
+    --muted-foreground: 40 15% 65%;
+    --accent: 35 95% 60%; /* Brighter Accent for dark mode */
+    --accent-foreground: 25 25% 15%;
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 38 40% 35%;
+    --input: 38 40% 35%;
+    --ring: 38 92% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Lato', sans-serif; /* Default body font */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif; /* Headings font */
+  }
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+.font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+/* Use class names from tailwind.config.js for fonts too */
+.font-heading { /* alias for Playfair Display */
+  font-family: 'Playfair Display', serif;
+}
+.font-body { /* alias for Lato */
+  font-family: 'Lato', sans-serif;
+}
+
+
+/* Custom Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glass effect */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.1); /* Adjust alpha for desired transparency */
+  backdrop-filter: blur(12px); /* Adjust blur intensity */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Softer border */
+}
+
+/* Custom scrollbar for a more luxurious feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background) / 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.6);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Product card hover effect */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+}
+.product-card:hover {
+  transform: translateY(-8px); /* Slightly more lift */
+  box-shadow: 0 30px 50px -15px hsla(var(--primary), 0.2), 0 15px 25px -10px hsla(var(--primary), 0.15);
+}
+
+/* Button hover effects */
+.btn-hover-effect {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease-in-out;
+  box-shadow: 0 3px 6px hsla(var(--primary), 0.25);
+}
+.btn-hover-effect:hover {
+  box-shadow: 0 6px 18px hsla(var(--primary), 0.35);
+  transform: translateY(-2px) scale(1.02); /* Add subtle scale */
+}
+.btn-hover-effect:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: hsla(0,0%,100%,0.1); /* Softer sheen */
+  transition: width 0.45s ease-in-out;
+  border-radius: inherit;
+}
+.btn-hover-effect:hover:after {
+  width: 130%; /* Wider sheen */
+}
+
+/* Rich text styling for blog content */
+.prose-styles h1, .prose-styles h2, .prose-styles h3 {
+  @apply font-heading mb-6 mt-8 text-neutral-800;
+}
+.prose-styles h1 { @apply text-4xl lg:text-5xl font-bold; }
+.prose-styles h2 { @apply text-3xl lg:text-4xl font-semibold; }
+.prose-styles h3 { @apply text-2xl lg:text-3xl font-semibold; }
+.prose-styles p { @apply mb-5 leading-loose text-neutral-700 text-base lg:text-lg font-body; }
+.prose-styles a { @apply text-gold-600 hover:text-gold-700 underline underline-offset-4 transition-colors; }
+.prose-styles ul, .prose-styles ol { @apply mb-5 ml-6 text-neutral-700 font-body; }
+.prose-styles li { @apply mb-2.5; }
+.prose-styles blockquote {
+  @apply border-l-4 border-gold-500 pl-6 italic text-neutral-600 my-8 py-3 text-lg;
+}
+.prose-styles img-replace {
+  @apply my-10 rounded-xl shadow-xl overflow-hidden;
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Auth page gradient background */
+.auth-gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--background)) 40%, hsl(var(--primary) / 0.05) 100%);
+}
