@@ -80,6 +80,9 @@
 .font-body { /* alias for Lato */
   font-family: 'Lato', sans-serif;
 }
+.font-nutrito { /* alias for Lato */
+  font-family: 'Nunito', sans-serif;
+}
 
 
 /* Custom Animations */

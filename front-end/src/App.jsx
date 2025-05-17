@@ -111,7 +111,7 @@ const AppContent = () => {
         <Suspense fallback={<LoadingSpinner />}>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<HomePage addToCart={addToCart} products={sampleProducts} />} />
+              <Route path="/" element={<HomePage addToCart={addToCart} products={sampleProducts} toggleWishlist={toggleWishlist} wishlist={wishlist}/>} />
               <Route path="/products" element={<ProductsPage addToCart={addToCart} products={sampleProducts} toggleWishlist={toggleWishlist} wishlist={wishlist} />} />
               <Route path="/products/:productId" element={<ProductDetailPage addToCart={addToCart} products={sampleProducts} toggleWishlist={toggleWishlist} wishlist={wishlist} />} />
               <Route path="/categories" element={<CategoriesPage />} />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Heart, Search, Menu, X, User, Briefcase, ShoppingBag  } from 'lucide-react';
+import {  Heart, Search, Menu, X, User, Briefcase, ShoppingBag,LogIn  } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/image/logo.png'
 import { useAuth } from '../contexts/AuthContext';
@@ -175,7 +175,7 @@ const Navbar = ({ cartItemCount, wishlistCount, setIsCartOpen }) => {
                   className="w-full p-3 pl-10 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent shadow-sm"
                 />
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <button type="submit" className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-gold-600 text-white px-4 py-2 rounded-full text-sm hover:bg-gold-700">Tìm kiếm</button>
+                <button type="submit" className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-2 rounded-full text-sm hover:bg-slate-900">Tìm kiếm</button>
               </form>
             </motion.div>
           )}
@@ -236,7 +236,7 @@ const Navbar = ({ cartItemCount, wishlistCount, setIsCartOpen }) => {
                     <Link to="/login" onClick={closeMobileMenu}
                       className={`md:hidden text-gray-700 hover:text-gold-600 hover:bg-gold-50/50 font-medium transition-colors px-3 py-3 rounded-md flex items-center ${location.pathname === "/seller-dashboard" ? 'bg-gold-100/70 text-gold-700' : ''}`}
                     >
-                      <Briefcase className="h-5 w-5 mr-2" /> Đăng nhập
+                      <LogIn className="h-5 w-5 mr-2" /> Đăng nhập
                     </Link>
                   )}
                 </div>

@@ -105,7 +105,7 @@ const ProductDetailPage = ({ addToCart, products, toggleWishlist, wishlist }) =>
                   key={currentImageIndex}
                   alt={images && images.length > 0 ? images[currentImageIndex] : name} 
                   className="w-full h-full object-cover"
-                  src={images && images.length > 0 ? `https://images.unsplash.com/photo-1591375462077-800a22f5fba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8${encodeURIComponent(images[currentImageIndex])}fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60` : `https://images.unsplash.com/photo-1591375462077-800a22f5fba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8${encodeURIComponent(product.image)}fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60`} 
+                  src={images && images.length > 0 ? `${images[currentImageIndex]}` : `${images[0]}`} 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
