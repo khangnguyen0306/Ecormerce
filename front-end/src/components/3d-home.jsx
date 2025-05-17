@@ -25,7 +25,7 @@ export function ThreeDMarqueeDemo() {
     "https://pixnio.com/free-images/2021/09/11/2021-09-11-09-31-51-576x959.jpg",
     "https://cdn.tgdd.vn/Files/2020/12/19/1314793/10-lo-nuoc-hoa-duoc-chi-em-do-xo-nhau-rinh-ve-nam-2020-boi-huong-thom-qua-u-la-sang-chanh-202201171620199732.jpeg",
 
-    "https://cdnphoto.dantri.com.vn/C8zuUHGH9uXIicbJaMGZ7JEUARE=/thumb_w/1020/2023/09/03/nuochoachonam7-1693730733953.jpg",
+    "https://file.hstatic.net/1000025647/file/nuoc-hoa-tom-ford-oud-wood_41df2305bc77447fb094962eee0eea4f_1024x1024.jpg",
     "https://spicyfoodstudio.com/wp-content/uploads/2024/01/chup-anh-nuoc-hoa-07.jpeg",
     "https://lipstick.vn/wp-content/uploads/2020/10/son-chanel-67-steady.jpg",
     "https://file.hstatic.net/200000073977/article/son-chanel-ft_09a47536ed11406b87e78382b9a267b8.jpg",
