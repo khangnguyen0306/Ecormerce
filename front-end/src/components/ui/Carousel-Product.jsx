@@ -12,13 +12,13 @@ const Slide = ({
     addToCart,
     wishlist,
     toggleWishlist,
-   
+
 }) => {
     const slideRef = useRef(null);
     const xRef = useRef(0);
     const yRef = useRef(0);
     const frameRef = useRef();
-  
+
 
     useEffect(() => {
         const animate = () => {
@@ -54,91 +54,97 @@ const Slide = ({
     const isInWishlist = wishlist && wishlist.some(item => item.id === id);
     return (
         <div className="[perspective:1200px] [transform-style:preserve-3d]">
-               <Link to={`/products/${id}`}>
-            <li
-                ref={slideRef}
-                className="flex flex-1 flex-col items-center justify-between relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10"
-                onClick={() => handleSlideClick(index)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                    transform:
-                        current !== index
-                            ? "scale(0.98) rotateX(8deg)"
-                            : "scale(1) rotateX(0deg)",
-                    transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                    transformOrigin: "bottom",
-                }}>
-                <div
-                    className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
+            <Link to={`/products/${id}`}>
+                <li
+                    ref={slideRef}
+                    className="flex flex-1 flex-col items-center justify-between relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10"
+                    onClick={() => handleSlideClick(index)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
                     style={{
                         transform:
-                            current === index
-                                ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
-                                : "none",
+                            current !== index
+                                ? "scale(0.98) rotateX(8deg)"
+                                : "scale(1) rotateX(0deg)",
+                        transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                        transformOrigin: "bottom",
                     }}>
-                    <img
-                        className="absolute inset-0 w-[120%] h-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
+                    <div
+                        className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
                         style={{
-                            opacity: current === index ? 1 : 0.5,
-                        }}
-                        alt={name}
-                        src={images[0]}
-                        onLoad={imageLoaded}
-                        loading="eager"
-                        decoding="sync" />
-                    {current === index && (
-                        <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
-                    )}
-                </div>
+                            transform:
+                                current === index
+                                    ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
+                                    : "none",
+                        }}>
+                        <img
+                            className="absolute inset-0 w-[120%] h-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
+                            style={{
+                                opacity: current === index ? 1 : 0.5,
+                            }}
+                            alt={name}
+                            src={images[0]}
+                            onLoad={imageLoaded}
+                            loading="eager"
+                            decoding="sync" />
+                        {current === index && (
+                            <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
+                        )}
+                    </div>
 
-                <div className="self-end">
-                    <button
-                      onClick={() => toggleWishlist(slide)}
-                        className={`
+                    <div className="self-end">
+                        <button
+                            onClick={(event) => {
+                                event.preventDefault();   // Chặn điều hướng mặc định của <Link>
+                                event.stopPropagation();  // Ngăn không cho click nổi bọt lên parent
+                                toggleWishlist(slide);
+                            }}
+                            className={`
     ${current === index ? "opacity-100 visible" : "opacity-0 invisible"} 
     relative mr-4 mt-6 px-3 py-2 w-fit mx-auto sm:text-sm bg-white/70 h-12 border border-transparent text-xs flex items-center justify-center rounded-xl
     transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
     hover:shadow-lg hover:text-black group  
   `}
-                    >
-                        <Heart className={`h-5 w-5 ${isInWishlist ? 'text-red-500 fill-current' : 'text-gray-700'}`} />
-                    </button>
+                        >
+                            <Heart className={`h-5 w-5 ${isInWishlist ? 'text-red-500 fill-current' : 'text-gray-700'}`} />
+                        </button>
 
-                </div>
-                <article
-                    className={`relative mb-10 p-[4vmin] text-left flex flex-col transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-                    <button
-                        onClick={() => addToCart(slide)}
-                        className={`
+                    </div>
+                    <article
+                        className={`relative z-10 mb-10 p-[4vmin] text-left flex flex-col transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();    // Chặn điều hướng
+                                e.stopPropagation();   // Ngăn nổi bọt
+                                addToCart(slide);
+                            }}
+                            className={`
     ${current === index ? "opacity-100 visible" : "opacity-0 invisible"} 
     relative mt-6 px-4 py-2 w-fit  sm:text-sm bg-white/70 h-12 border border-transparent text-xs flex items-center justify-center rounded-xl
     transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
     hover:shadow-lg hover:text-black mb-4 
   `}
-                    >
-                        {/* Chỉ icon luôn hiện */}
-                        <ShoppingBag width={25} height={25} />
-                        {/* Text ẩn, chỉ hiện khi hover lên button */}
-                        <span
-                            className="   group-hover:inline-block transform  ml-3    transition-all duration-300 " >
-                            + Thêm vào giỏ hàng
-                        </span>
-                    </button>
+                        >
+                            <ShoppingBag width={25} height={25} />
+                            <span
+                                className="group-hover:inline-block transform ml-3 transition-all duration-300">
+                                + Thêm vào giỏ hàng
+                            </span>
+                        </button>
 
-                    <h2 className="text-lg md:text-xl lg:text-3xl font-nunito font-semibold relative ">
-                        {name}
-                    </h2>
-                    <div className="">
-                        <p className='font-nunito mt-2'>
-                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}
-                        </p>
-                        <p className='font-nunito mt-2'>
-                            {description}
-                        </p>
-                    </div>
-                </article>
-            </li>
+                        <h2 className="text-lg md:text-xl lg:text-3xl font-nunito font-semibold relative ">
+                            {name}
+                        </h2>
+                        <div className="">
+                            <p className='font-nunito mt-2'>
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}
+                            </p>
+                            <p className='font-nunito mt-2'>
+                                {description}
+                            </p>
+                        </div>
+                    </article>
+                </li>
             </Link>
         </div>
     );
