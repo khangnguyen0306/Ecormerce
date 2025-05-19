@@ -1,5 +1,5 @@
 import React from "react";
-import { DraggableCardBody, DraggableCardContainer } from "../../components/draggable-card";
+import { DraggableCardBody, DraggableCardContainer } from "../../components/DraggableCard";
 
 
 export function DraggableCardHome() {
