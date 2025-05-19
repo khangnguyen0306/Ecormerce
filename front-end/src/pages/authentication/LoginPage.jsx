@@ -66,8 +66,8 @@ const LoginPage = () => {
       >
         <div className="text-center mb-8">
           <Link to="/">
-            <span className="text-4xl font-bold text-gold-600 font-cormorant cursor-pointer">
-              BeautyGlow
+            <span className="text-2xl font-bold font-nunito text-gold-600 cursor-pointer">
+              NGUYEN AN AN
             </span>
           </Link>
           <h1 className="text-2xl font-semibold text-neutral-700 mt-3 font-cormorant">Đăng nhập tài khoản</h1>

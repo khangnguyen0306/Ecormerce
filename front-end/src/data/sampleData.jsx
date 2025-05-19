@@ -74,6 +74,7 @@ export const sampleProducts = [
         name: 'Sữa rửa mặt trà xanh',
         description: 'Sữa rửa mặt chiết xuất trà xanh giúp làm sạch và dịu nhẹ cho da.',
         price: 250000,
+        category: 'makeup',
         images: [
             'https://media.istockphoto.com/id/1418265792/vi/anh/%C4%91%E1%BB%93ng-h%E1%BB%93-m%E1%BB%B9-ph%E1%BA%A9m-%C4%91%C3%A0o-m%C3%A0u-be-%C4%91%E1%BB%8F-v%C3%A0-san-h%C3%B4-phong-c%C3%A1ch-m%E1%BB%B9-ph%E1%BA%A9m-phong-c%C3%A1ch-ph%E1%BA%B3ng-n%E1%BA%B1m-b%E1%BA%A3ng-m%C3%A0u-c%E1%BA%ADn.jpg?s=612x612&w=0&k=20&c=UoIEdrplo5TlAUuyCZuxoif0vIM4BzpNFi4F0eCcLJA=',
             'Kết cấu sữa rửa mặt',

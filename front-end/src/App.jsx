@@ -12,7 +12,7 @@ import CartSidebar from '@/components/CartSidebar';
 import LoadingSpinner from '@/components/Loading/LoadingSpinner';
 
 // Lazy loaded pages
-const HomePage = lazy(() => import('@/pages/HomePage'));
+
 const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
 const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
@@ -36,9 +36,12 @@ const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 // Data
 import { sampleProducts, sampleArticles } from '@/data/sampleData';
+import { useToast } from './components/ui/use-toast';
+import HomePage from './pages/Home/HomePage';
 
 
 const AppContent = () => {
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('beautyCart');
@@ -50,7 +53,7 @@ const AppContent = () => {
   });
   const location = useLocation();
   const { user } = useAuth();
-
+  const { toast } = useToast();
 
   useEffect(() => {
     localStorage.setItem('beautyCart', JSON.stringify(cart));
@@ -71,7 +74,14 @@ const AppContent = () => {
     } else {
       setCart([...cart, { ...product, quantity }]);
     }
-    // Toast can be triggered from AuthContext or here
+    toast({
+      // title: "Lỗi đăng nhập",
+      description: "Đã thêm vào giỏ hàng !",
+      position: "top-left",
+      // variant: "destructive",
+      className: "bg-green-500 text-white",
+
+    });
   };
 
   const removeFromCart = (productId) => {
@@ -97,6 +107,11 @@ const AppContent = () => {
     } else {
       setWishlist([...wishlist, product]);
     }
+    toast({
+      // title: "Lỗi đăng nhập",
+      description: `Đã ${!isInWishlist ? "thêm vào" : "xóa khỏi"} danh sách yêu thích !`,
+      className: `${!isInWishlist ? "bg-green-500" : "bg-red-500"}  text-white`
+    });
   };
 
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
@@ -106,12 +121,12 @@ const AppContent = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col font-body">
       <Navbar cartItemCount={cartItemCount} wishlistCount={wishlistCount} setIsCartOpen={setIsCartOpen} />
-      
+
       <main className="flex-grow pt-20 md:pt-24">
         <Suspense fallback={<LoadingSpinner />}>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<HomePage addToCart={addToCart} products={sampleProducts} toggleWishlist={toggleWishlist} wishlist={wishlist}/>} />
+              <Route path="/" element={<HomePage addToCart={addToCart} products={sampleProducts} toggleWishlist={toggleWishlist} wishlist={wishlist} />} />
               <Route path="/products" element={<ProductsPage addToCart={addToCart} products={sampleProducts} toggleWishlist={toggleWishlist} wishlist={wishlist} />} />
               <Route path="/products/:productId" element={<ProductDetailPage addToCart={addToCart} products={sampleProducts} toggleWishlist={toggleWishlist} wishlist={wishlist} />} />
               <Route path="/categories" element={<CategoriesPage />} />
@@ -121,7 +136,7 @@ const AppContent = () => {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/blog" element={<BlogPage articles={sampleArticles} />} />
               <Route path="/blog/:articleId" element={<ArticlePage articles={sampleArticles} />} />
-              
+
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/forgot-password" element={<ForgotPasswordPage />} />
@@ -141,37 +156,38 @@ const AppContent = () => {
               <Route element={<ProtectedRoute allowedRoles={['seller', 'admin']} />}>
                 <Route path="/seller-dashboard" element={<SellerDashboardPage products={sampleProducts} />} />
               </Route>
-              
+
               <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
                 {/* <Route path="/admin-dashboard" element={<AdminDashboardPage initialProducts={sampleProducts} initialUsers={[]} />} /> */}
               </Route>
-              
+
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </AnimatePresence>
         </Suspense>
       </main>
-      
+
       <Footer />
-      
+
       <AnimatePresence>
         {isCartOpen && (
-          <CartSidebar 
-            cart={cart} 
-            setIsCartOpen={setIsCartOpen} 
+          <CartSidebar
+            cart={cart}
+            setIsCartOpen={setIsCartOpen}
             removeFromCart={removeFromCart}
             updateQuantity={updateQuantity}
             cartTotal={cartTotal}
           />
         )}
       </AnimatePresence>
-      
+
       <Toaster />
     </div>
   );
 };
 
 const App = () => (
+
   <AuthProvider>
     <AppContent />
   </AuthProvider>

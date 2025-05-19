@@ -92,7 +92,7 @@ const Slide = ({
                         )}
                     </div>
 
-                    <div className="self-end">
+                    <div className="self-end ">
                         <button
                             onClick={(event) => {
                                 event.preventDefault();   // Chặn điều hướng mặc định của <Link>
@@ -111,7 +111,7 @@ const Slide = ({
 
                     </div>
                     <article
-                        className={`relative z-10 mb-10 p-[4vmin] text-left flex flex-col transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                        className={`relative z-10 mb-10 px-4 pb-4 text-left flex flex-col  transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                         <button
                             onClick={(e) => {
                                 e.preventDefault();    // Chặn điều hướng
@@ -120,7 +120,7 @@ const Slide = ({
                             }}
                             className={`
     ${current === index ? "opacity-100 visible" : "opacity-0 invisible"} 
-    relative mt-6 px-4 py-2 w-fit  sm:text-sm bg-white/70 h-12 border border-transparent text-xs flex items-center justify-center rounded-xl
+    relative px-4 py-2 w-fit  sm:text-sm bg-white/70  border border-transparent text-xs flex items-center justify-center rounded-xl
     transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
     hover:shadow-lg hover:text-black mb-4 
   `}
@@ -223,7 +223,7 @@ export function Carousel({ slides, addToCart, wishlist, toggleWishlist }) {
                     />
                 ))}
             </ul>
-            <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
+            <div className="hidden md:flex absolute justify-center w-full top-[calc(100%+1rem)]">
                 <CarouselControl
                     type="previous"
                     title="Go to previous slide"
