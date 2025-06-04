@@ -100,6 +100,14 @@ const AboutUsPage = () => {
           </motion.div>
         </div>
       </section>
+      {/* <div>
+        <h2>
+          Đội ngũ của chúng tôi
+        </h2>
+        <p>
+          Đội ngũ của chúng tôi là những người đam mê và tâm huyết với mỹ phẩm. Chúng tôi cam kết mang đến cho bạn những sản phẩm chất lượng cao, được nghiên cứu và kiểm nghiệm kỹ lưỡng.
+        </p>
+      </div> */}
 
       {/* Team Section */}
       <section className="mb-12">
